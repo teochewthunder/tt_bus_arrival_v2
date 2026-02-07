@@ -10,8 +10,7 @@
 		curl_setopt_array(
 			$curl, 
 			[
-				//CURLOPT_URL => "http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=" . $busStop,
-				CURLOPT_URL => "https://datamall2.mytransport.sg/ltaodataservice/v3/BusArrival?BusStopCode=" . $busStop,			
+				CURLOPT_URL => "https://datamall2.mytransport.sg/ltaodataservice/v3/BusArrival?BusStopCode=" . $busStop,
 				CURLOPT_RETURNTRANSFER => true,
 				CURLOPT_ENCODING => "",
 				CURLOPT_MAXREDIRS => 10,
@@ -22,7 +21,7 @@
 				CURLOPT_HTTPHEADER => 
 			  	[
 			    	"Content-Type: application/json",
-			    	"accountKey: xxx=="
+			    	"accountKey: jA6FF90AQqSbpAPRs9XJAg=="
 			  	],
 			]
 		);
@@ -32,9 +31,12 @@
 
 		curl_close($curl);
 
-		if ($err) {
+		if ($err) 
+		{
 			echo "cURL Error #:" . $err;
-		} else {
+		} 
+		else 
+		{
 			$obj = json_decode($response);
 			$buses = $obj->Services;
 		}
@@ -43,7 +45,18 @@
 	function formatArrivalTime($strTime)
 	{
 		$newStr = str_replace("+08:00", "", $strTime);
+		$newStr = str_replace("T", " ", $newStr);
 		return date("h:i A", strtotime($newStr));
+	}
+
+	function busArrivalDisplay($obj)
+	{
+		$html = "<h2 class='capacity_" . $obj->Load . "'>";
+		$html .= formatArrivalTime($obj->EstimatedArrival);
+		$html .= "&nbsp;<img height='20' src='icon_" . $obj->Type . ".png' />";
+		$html .= "</h2>";
+
+		return $html;
 	}
 ?>
 
@@ -108,10 +121,25 @@
 				font-size: 20px;
 				font-weight: bold;
 			}
+
+			.capacity_SEA
+			{
+				color: rgb(100, 255, 100);
+			}	
+
+			.capacity_SDA
+			{
+				color: rgb(255, 255, 100);
+			}		
+
+			.capacity_LSD
+			{
+				color: rgb(255, 100, 100);
+			}
 		</style>
 
 		<script>
-			function showArrivalFor($bus)
+			function showArrivalFor(bus)
 			{
 				var hide = document.getElementsByClassName("arrival");
 
@@ -120,7 +148,7 @@
 					hide[i].style.display = "none";
 				}
 
-				var show = document.getElementById("arrival_" + $bus);
+				var show = document.getElementById("arrival_" + bus);
 				show.style.display = "block";
 			}
 		</script>
@@ -154,34 +182,34 @@
 				?>
 			</div>
 
-			<br />
+			<br />	
 
 			<?php 
 				foreach($buses as $bus)
 				{
 			?>
 				<div id="arrival_<?php echo $bus->ServiceNo; ?>" class="arrival" style="display:none">
-				<h1>&#128336; BUS <?php echo $bus->ServiceNo; ?> ARRIVAL TIMINGS</h1>
-			<?php 
-					if ($bus->NextBus)
-					{
-						echo "<h2>" . formatArrivalTime($bus->NextBus->EstimatedArrival) . "</h2>";
-					}
+					<h1>&#128336; BUS <?php echo $bus->ServiceNo; ?> ARRIVAL TIMINGS</h1>
+					<?php 
+						if ($bus->NextBus)
+						{
+							echo busArrivalDisplay($bus->NextBus);
+						}
 
-					if ($bus->NextBus2)
-					{
-						echo "<h2>" . formatArrivalTime($bus->NextBus2->EstimatedArrival) . "</h2>";
-					}
+						if ($bus->NextBus2)
+						{
+							echo busArrivalDisplay($bus->NextBus2);
+						}
 
-					if ($bus->NextBus3)
-					{
-						echo "<h2>" . formatArrivalTime($bus->NextBus3->EstimatedArrival) . "</h2>";
-					}
-			?>
+						if ($bus->NextBus3)
+						{
+							echo busArrivalDisplay($bus->NextBus);
+						}
+					?>
 				</div>
 			<?php			
 				}
-			?>				
+			?>						
 		</div>
 	</body>
 </html>
