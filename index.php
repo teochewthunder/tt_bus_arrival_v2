@@ -68,7 +68,7 @@
 		<style>
 			body
 			{
-				background-color: rgb(255, 255, 255);
+				background-color: rgb(255, 200, 0);
 				font-family: sans-serif;
 				font-size: 16px;
 			}
@@ -76,14 +76,12 @@
 			#container
 			{
 				border-radius: 20px;
-				border: 3px solid rgba(100, 0, 0, 0.8);
+				border: 3px solid rgba(255, 255, 255, 0.5);
 				padding: 2em;
 			}
 
 			#container div
 			{
-				border-radius: 20px;
-				border: 3px solid rgba(100, 0, 0, 0.2);
 				padding: 0.5em;
 				color: rgb(0, 0, 0);
 			}
@@ -91,6 +89,7 @@
 			#stop input
 			{
 				border-radius: 5px;
+				border: 0px solid rgba(0, 0, 0, 0.5);
 				padding: 5px;
 				width: 10em;
 				height: 1em;
@@ -98,28 +97,41 @@
 
 			#stop button
 			{
-				background-color: rgb(50, 0, 0);
+				background-color: rgb(255, 100, 0);
 				color: rgb(255, 255, 255);
 				border-radius: 5px;
+				border: 0px solid rgba(0, 0, 0, 0.5);
 				padding: 5px;
 				width: 10em;
 			}
 
 			#stop button:hover
 			{
-				background-color: rgb(50, 50, 0);
+				background-color: rgb(150, 50, 0);
 			}
 
-			#bus button
+			.arrival h1
 			{
-				background-color: rgb(50, 0, 0);
+				background-color: rgb(250, 150, 0);
 				color: rgb(255, 255, 255);
 				border-radius: 5px;
-				border: 3px solid rgba(0, 0, 0, 0.5);
+				border: 0px solid rgba(0, 0, 0, 0.5);
 				padding: 5px;
 				width: 5em;
 				font-size: 20px;
 				font-weight: bold;
+				float: left;
+				text-align: center;
+			}
+
+			.arrival h2
+			{
+				padding: 5px;
+				width: 10em;
+				font-size: 20px;
+				font-weight: bold;
+				float: left;
+				text-align: center;
 			}
 
 			.capacity_SEA
@@ -137,21 +149,6 @@
 				color: rgb(255, 100, 100);
 			}
 		</style>
-
-		<script>
-			function showArrivalFor(bus)
-			{
-				var hide = document.getElementsByClassName("arrival");
-
-				for (var i = 0; i < hide.length; i++)
-				{
-					hide[i].style.display = "none";
-				}
-
-				var show = document.getElementById("arrival_" + bus);
-				show.style.display = "block";
-			}
-		</script>
 	</head>
 
 	<body>
@@ -166,30 +163,12 @@
 
 			<br/>
 
-			<div id="bus" style="display:<?php echo (count($buses) == 0 ? "none" : "block");?>">
-				<h1>&#128652; BUS SERVICES</h1>
-				<?php 
-					foreach($buses as $bus)
-					{
-				?>
-					<button onclick="showArrivalFor('<?php echo $bus->ServiceNo; ?>');">
-						<?php 
-							echo $bus->ServiceNo;
-						?>
-					</button>		
-				<?php		
-					}
-				?>
-			</div>
-
-			<br />	
-
 			<?php 
 				foreach($buses as $bus)
 				{
 			?>
-				<div id="arrival_<?php echo $bus->ServiceNo; ?>" class="arrival" style="display:none">
-					<h1>&#128336; BUS <?php echo $bus->ServiceNo; ?> ARRIVAL TIMINGS</h1>
+				<div class="arrival">
+					<h1><?php echo $bus->ServiceNo; ?></h1>
 					<?php 
 						if ($bus->NextBus)
 						{
@@ -207,6 +186,7 @@
 						}
 					?>
 				</div>
+				<br style="clear: both" />
 			<?php			
 				}
 			?>						
