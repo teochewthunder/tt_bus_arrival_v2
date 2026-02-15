@@ -68,7 +68,7 @@
 		<style>
 			body
 			{
-				background-color: rgb(255, 200, 0);
+				background-color: rgb(200, 150, 0);
 				font-family: sans-serif;
 				font-size: 16px;
 			}
@@ -89,7 +89,7 @@
 			#stop input
 			{
 				border-radius: 5px;
-				border: 0px solid rgba(0, 0, 0, 0.5);
+				border: 0px solid rgba(0, 0, 0, 0);
 				padding: 5px;
 				width: 10em;
 				height: 1em;
@@ -97,10 +97,10 @@
 
 			#stop button
 			{
-				background-color: rgb(255, 100, 0);
+				background-color: rgb(255, 200, 0);
 				color: rgb(255, 255, 255);
 				border-radius: 5px;
-				border: 0px solid rgba(0, 0, 0, 0.5);
+				border: 0px solid rgba(0, 0, 0, 0);
 				padding: 5px;
 				width: 10em;
 			}
@@ -112,7 +112,7 @@
 
 			.arrival h1
 			{
-				background-color: rgb(250, 150, 0);
+				background-color: rgb(255, 200, 0);
 				color: rgb(255, 255, 255);
 				border-radius: 5px;
 				border: 0px solid rgba(0, 0, 0, 0.5);
@@ -154,7 +154,7 @@
 	<body>
 		<div id="container">
 			<div id="stop">
-				<h1>&#128655; BUS STOP <?php echo $busStop;?></h1>
+				<h1>BUS STOP <?php echo $busStop;?></h1>
 				<form method="POST">
 					<input type="number" name="txtStop" placeholder="e.g, 9810007" />
 					<button name="btnFindStop">FIND THIS STOP</button>
