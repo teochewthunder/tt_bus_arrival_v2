@@ -53,7 +53,7 @@
 	{
 		$html = "<h2 class='capacity_" . $obj->Load . "'>";
 		$html .= formatArrivalTime($obj->EstimatedArrival);
-		$html .= "&nbsp;<img height='20' src='icon_" . $obj->Type . ".png' />";
+		$html .= "&nbsp;<img height='30' src='icon_" . $obj->Type . ".png' />";
 		$html .= "</h2>";
 
 		return $html;
@@ -70,7 +70,7 @@
 			{
 				background-color: rgb(200, 150, 0);
 				font-family: sans-serif;
-				font-size: 16px;
+				font-size: 25px;
 			}
 
 			#container
@@ -118,7 +118,7 @@
 				border: 0px solid rgba(0, 0, 0, 0.5);
 				padding: 5px;
 				width: 5em;
-				font-size: 20px;
+				font-size: 30px;
 				font-weight: bold;
 				float: left;
 				text-align: center;
@@ -128,7 +128,7 @@
 			{
 				padding: 5px;
 				width: 10em;
-				font-size: 20px;
+				font-size: 25px;
 				font-weight: bold;
 				float: left;
 				text-align: center;
