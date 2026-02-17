@@ -117,7 +117,8 @@
 				border-radius: 5px;
 				border: 0px solid rgba(0, 0, 0, 0.5);
 				padding: 5px;
-				width: 5em;
+				width: 4em;
+				height: 40px;
 				font-size: 30px;
 				font-weight: bold;
 				float: left;
@@ -126,27 +127,32 @@
 
 			.arrival h2
 			{
+				background-color: rgb(255, 255, 255);
+				border-radius: 15px;
+				border: 0px solid rgba(0, 0, 0, 0.5);
 				padding: 5px;
-				width: 10em;
+				width: 7em;
+				height: 40px;
 				font-size: 25px;
 				font-weight: bold;
 				float: left;
 				text-align: center;
+				margin-left: 0.5em;
 			}
 
 			.capacity_SEA
 			{
-				color: rgb(100, 255, 100);
+				color: rgb(0, 200, 0);
 			}	
 
 			.capacity_SDA
 			{
-				color: rgb(255, 255, 100);
+				color: rgb(200, 200, 0);
 			}		
 
 			.capacity_LSD
 			{
-				color: rgb(255, 100, 100);
+				color: rgb(200, 0, 0);
 			}
 		</style>
 	</head>
