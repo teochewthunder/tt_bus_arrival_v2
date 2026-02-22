@@ -21,7 +21,7 @@
 				CURLOPT_HTTPHEADER => 
 			  	[
 			    	"Content-Type: application/json",
-			    	"accountKey: jA6FF90AQqSbpAPRs9XJAg=="
+			    	"accountKey: xxx"
 			  	],
 			]
 		);
@@ -52,8 +52,8 @@
 	function busArrivalDisplay($obj)
 	{
 		$html = "<h2 class='capacity_" . $obj->Load . "'>";
+		$html .= "<img height='30' src='icon_" . $obj->Type . ".png' />&nbsp;";
 		$html .= formatArrivalTime($obj->EstimatedArrival);
-		$html .= "&nbsp;<img height='30' src='icon_" . $obj->Type . ".png' />";
 		$html .= "</h2>";
 
 		return $html;
