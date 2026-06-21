@@ -2,7 +2,14 @@
 Uprades (TBA)
 
 ## User Interface
-xxx
+- JavaScript has been eliminated. 
+- Now all bus timings are shown for all bus numbers at the stop.
 
 ## Bus Data Indicators
-xxx
+- Bus Timings are rendered in thse colors.
+  - Green for seating space.
+  - Yellow for standing space.
+  - Red for limited standing space.
+- Icons displayed.
+  - Double Decker icons if bus is a double decker.
+  - Single Decker icons for all other cases.
